@@ -7,7 +7,7 @@ set -e
 
 # Default locations if the var isn't already set
 export TOOLS_DIR="${TOOLS_DIR:=/opt}"
-export SOURCES_DIR="${SOURCES_DIR:=/sources}"
+export SOURCES_DIR="${SOURCES_DIR:=.}"
 export BUILD_DIR="${BUILD_DIR:=$SOURCES_DIR/build}"
 export OUTPUT_DIR="${OUTPUT_DIR:=$BUILD_DIR/output}"
 
