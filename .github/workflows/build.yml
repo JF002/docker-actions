@@ -1,0 +1,10 @@
+name: Build PineTime Firmware
+on:
+  push:
+      branches: [master]
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      container:
+        image: 'docker/Dockerfile'
