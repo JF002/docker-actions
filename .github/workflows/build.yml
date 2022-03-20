@@ -10,7 +10,7 @@ jobs:
         image: 'docker/Dockerfile'
       steps:
         - name: Build
-          uses: 'docker'
+          uses: jf002/docker-action-build
           with:
             entrypoint: /opt/build.sh
             args: all
