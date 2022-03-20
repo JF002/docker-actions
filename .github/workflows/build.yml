@@ -8,3 +8,8 @@ jobs:
       runs-on: ubuntu-latest
       container:
         image: 'docker/Dockerfile'
+        steps:
+          - name: Build
+            with:
+              entrypoint: /opt/build.sh
+              args: all
