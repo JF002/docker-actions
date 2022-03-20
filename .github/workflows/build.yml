@@ -1,4 +1,4 @@
-name: Build PineTime Firmware
+name: Build Hello world
 on:
   push:
       branches: [master]
@@ -8,8 +8,8 @@ jobs:
       runs-on: ubuntu-latest
       container:
         image: 'docker/Dockerfile'
-        steps:
-          - name: Build
-            with:
-              entrypoint: /opt/build.sh
-              args: all
+      steps:
+        - name: Build
+          with:
+            entrypoint: /opt/build.sh
+            args: all
