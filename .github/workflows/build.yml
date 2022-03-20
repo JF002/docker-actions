@@ -9,6 +9,10 @@ jobs:
       container:
         image: jf002/docker-action-build
       steps:
+        - name: Checkout source files
+          uses: actions/checkout@v2
+          with:
+            submodules: recursive
         - name: Build
           shell: bash
           run: |
