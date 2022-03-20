@@ -7,7 +7,7 @@ set -e
 
 # Default locations if the var isn't already set
 export TOOLS_DIR="${TOOLS_DIR:=/opt}"
-export SOURCES_DIR="${SOURCES_DIR:=/sources}"
+export SOURCES_DIR="${SOURCES_DIR:=.}"
 export BUILD_DIR="${BUILD_DIR:=$SOURCES_DIR/build}"
 export OUTPUT_DIR="${OUTPUT_DIR:=$BUILD_DIR/output}"
 
@@ -31,16 +31,20 @@ main() {
 }
 
 CmakeGenerate() {
+  # We can swap the CD and trailing SOURCES_DIR for -B and -S respectively
+  # once we go to newer CMake (Ubuntu 18.10 gives us CMake 3.10)
+  cd "$BUILD_DIR"
+
   cmake -G "Unix Makefiles" \
-    -S "$SOURCES_DIR" \
-    -B "$BUILD_DIR" \
-    -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+    -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+    ".."
+  cmake -L -N .
 }
 
 CmakeBuild() {
   local target="$1"
   [[ -n "$target" ]] && target="--target $target"
-  if cmake --build "$BUILD_DIR" --config $BUILD_TYPE $target -- -j$(nproc)
+  if cmake --build . --config $BUILD_TYPE $target -- -j$(nproc)
     then return 0; else return 1;
   fi
 }
