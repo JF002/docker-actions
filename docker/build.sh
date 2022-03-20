@@ -18,6 +18,8 @@ MACHINE="$(uname -m)"
 
 main() {
   local target="$1"
+  echo "SOURCE DIR : " $SOURCES_DIR
+  echo "BUILD DIR : " $BUILD_DIR
 
   mkdir -p "$TOOLS_DIR"
 
@@ -35,14 +37,14 @@ CmakeGenerate() {
 
   cmake -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-    "$SOURCES_DIR"
+    ".."
   cmake -L -N .
 }
 
 CmakeBuild() {
   local target="$1"
   [[ -n "$target" ]] && target="--target $target"
-  if cmake --build "$BUILD_DIR" --config $BUILD_TYPE $target -- -j$(nproc)
+  if cmake --build . --config $BUILD_TYPE $target -- -j$(nproc)
     then return 0; else return 1;
   fi
 }

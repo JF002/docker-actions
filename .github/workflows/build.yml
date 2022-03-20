@@ -17,3 +17,8 @@ jobs:
           shell: bash
           run: |
             /opt/build.sh all
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: HelloWorld
+            path: build/*

@@ -13,5 +13,5 @@ RUN apt-get update -qq \
 # build.sh knows how to compile
 COPY build.sh /opt/
 
-ENV SOURCES_DIR /sources
+ENV SOURCES_DIR .
 CMD ["/opt/build.sh"]
