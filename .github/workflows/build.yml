@@ -6,9 +6,10 @@ on:
 jobs:
     build:
       runs-on: ubuntu-latest
+      container:
+        image: jf002/docker-action-build
       steps:
         - name: Build
-          uses: jf002/docker-action-build
-          with:
-            entrypoint: /opt/build.sh
-            args: all
+          shell: bash
+          run: |
+            echo "coucou"
