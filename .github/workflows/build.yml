@@ -12,4 +12,4 @@ jobs:
         - name: Build
           shell: bash
           run: |
-            echo "coucou"
+            /opt/build.sh all
